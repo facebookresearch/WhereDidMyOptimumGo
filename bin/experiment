@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+# Copyright (c) Facebook, Inc. and its affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+#
+
+from optimumrl.experiment.executor import launch_experiment
+from optimumrl.common.configuration.arguments import get_args
+from optimumrl.common.configuration.readers import ConfigurationReader
+
+if __name__ == "__main__":
+    args = get_args()
+
+    launch_experiment(args)

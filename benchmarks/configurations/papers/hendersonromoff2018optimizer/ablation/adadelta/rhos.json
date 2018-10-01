@@ -1,0 +1,34 @@
+{
+  "ablation_var" : "algorithm.params.optimizer",
+  "ablation_values":
+  [
+    {
+      "class" : "torch.optim.Adadelta",
+      "kwargs" : {
+        "lr" : 3e-4,
+        "rho" : 0.99
+      }
+    },
+    {
+      "class" : "torch.optim.Adadelta",
+      "kwargs" : {
+        "lr" : 3e-4,
+        "rho" : 0.9
+      }
+    },
+    {
+      "class" : "torch.optim.Adadelta",
+      "kwargs" : {
+        "lr" : 3e-4,
+        "rho" : 0.8
+      }
+    },
+    {
+      "class" : "torch.optim.Adadelta",
+      "kwargs" : {
+        "lr" : 3e-4,
+        "rho" : 0.7
+      }
+    }
+  ]
+}

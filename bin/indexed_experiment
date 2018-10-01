@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+# Copyright (c) Facebook, Inc. and its affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+#
+
+from optimumrl.experiment.executor import launch_experiment
+from optimumrl.common.configuration.arguments import get_args
+from optimumrl.common.configuration.readers import ConfigurationReader
+from optimumrl.common.utilities.python_utils import nested_set, dictionary_to_dir_string, nested_get
+
+import copy
+import os
+if __name__ == "__main__":
+    args = get_args()
+
+    reader = ConfigurationReader()
+    config = reader.load(args.config_file)
+    built_configs = []
+    for seed_pair in config["training_seeds"]:
+        if isinstance(config["environment"],list):
+            for env in config["environment"]:
+                copied = copy.deepcopy(config)
+                copied["training_seed"] = seed_pair
+                copied["environment"] = env
+                copied["log_dir"] = os.path.join(copied["log_dir"], copied["algorithm"]["name"])
+                copied["log_dir"] = os.path.join(copied["log_dir"], copied["environment"]["name"])
+                copied["log_dir"] = os.path.join(copied["log_dir"], str(copied["training_seed"]["agent_seed"]) + "_" + str(copied["training_seed"]["environment_seed"]))
+                built_configs.append(copied)
+
+    if args.ablation_config:
+        ablation_config = reader.load(args.ablation_config)
+        final_built_configs = []
+        nested_keys = ablation_config["ablation_var"].split(".")
+        for value in ablation_config["ablation_values"]:
+            for built_config in built_configs:
+                config_copy = copy.deepcopy(built_config)
+                nested_set(config_copy, ablation_config["ablation_var"].split("."), value)
+                config_copy["log_dir"] = os.path.join(config_copy["log_dir"], dictionary_to_dir_string(value))
+                final_built_configs.append(config_copy)
+        built_configs = final_built_configs
+
+    launch_experiment(built_configs[args.run_index])

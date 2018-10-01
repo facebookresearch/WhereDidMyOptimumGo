@@ -1,0 +1,55 @@
+{
+  "log_dir" : "./logs/",
+  "viz" : false,
+  "viz_port" : 8097,
+  "viz_interval" : 1000,
+  "environment" : [
+    {"name" : "Hopper-v2"},
+    {"name" : "HalfCheetah-v2"},
+    {"name" : "Walker2d-v2"},
+    {"name" : "Ant-v2"},
+    {"name" : "Reacher-v2"}
+  ],
+  "training_seeds" : [
+    { "agent_seed" : 125125, "environment_seed" : 153298},
+    { "agent_seed" : 513, "environment_seed" : 623},
+    { "agent_seed" : 90135, "environment_seed" : 6412},
+    { "agent_seed" : 81212, "environment_seed" : 91753},
+    { "agent_seed" : 3523401, "environment_seed" : 52379},
+    { "agent_seed" : 15709, "environment_seed" : 17},
+    { "agent_seed" : 1, "environment_seed" : 99124},
+    { "agent_seed" : 0, "environment_seed" : 772311},
+    { "agent_seed" : 8412, "environment_seed" : 19153163},
+    { "agent_seed" : 1153780, "environment_seed" : 9231}
+  ],
+  "evaluation_seeds" : "./benchmarks/configurations/seeds/test_seeds.json",
+  "algorithm" : {
+    "name" : "a2c",
+    "params" : {
+      "add_timestep" : false,
+      "recurrent_policy" : false,
+      "num_frames" : 2e6,
+      "num_steps" : 5,
+      "num_processes" : 1,
+      "cuda" : false,
+      "gamma" : 0.99,
+      "tau" : 0.95,
+      "use_gae" : false,
+      "save_model" : false,
+      "value_loss_coef" : 1.0,
+      "entropy_coef" : 0.0,
+      "max_grad_norm"  : 0.5,
+      "num_stack" : 1,
+      "log_interval" : 100,
+      "save_interval" : 100,
+      "optimizer" : {
+        "class" : "torch.optim.RMSprop",
+        "kwargs" : {
+          "lr" : 3e-4,
+          "eps" : 1e-5,
+          "alpha" : 0.99
+        }
+      }
+    }
+  }
+}
