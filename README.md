@@ -34,6 +34,7 @@ If you find this useful, please cite our work:
   booktitle = {The 14th European Workshop on Reinforcement Learning (EWRL 2018)},
   year      = {2018}
 }
+
 ```
 
 Additionally, if you are relying on the codebase heavily please note the original codebase as well:
@@ -48,3 +49,6 @@ Additionally, if you are relying on the codebase heavily please note the origina
   howpublished = {\url{https://github.com/ikostrikov/pytorch-a2c-ppo-acktr}},
 }
 ```
+
+## License
+This repo is CC-BY-NC licensed, as found in the LICENSE file.
