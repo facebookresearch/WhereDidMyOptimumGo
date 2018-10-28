@@ -1,6 +1,10 @@
 # Where Did My Optimum Go? Experiments.
 
-This is the repository for the experiments seen in the EWRL 2018 Paper "Where Did My Optimum Go?". Largely they are a modification of the code found in:
+This is the repository for the experiments seen in the EWRL 2018 Paper "Where Did My Optimum Go?":
+
+https://arxiv.org/abs/1810.02525
+
+Largely they are a modification of the code found in:
 
 https://github.com/ikostrikov/pytorch-a2c-ppo-acktr
 
